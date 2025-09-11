@@ -1,0 +1,112 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  background: #cad2c5;
+  color: #222;
+}
+
+header {
+  background: #354f52; /* Aggie maroon */
+  color: white;
+  padding: 1rem;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+.nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  width: min(1100px, 92vw);   
+  margin: 0 auto;             
+  padding: 2.25rem;            
+}
+
+html { font-size: clamp(16px, 1.1vw + 14px, 20px); }
+
+
+h1 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+h2 { font-size: clamp(1.25rem, 2.2vw, 1.6rem); }
+p { line-height: 1.65; }
+
+.hero {
+  text-align: center;
+  margin: 3rem auto 2.5rem;
+  max-width: 60ch;   
+}
+.sitename {
+  margin: 0 0 .5rem;
+  font-weight: 700;
+}
+.tagline {
+  margin: 0;
+  color: #2f3e46; 
+}
+
+
+.intro {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; 
+  gap: 2.5rem;
+  align-items: center;             
+  margin-top: 2.75rem;
+}
+
+
+.introtext h2 { margin: 0 0 1rem; }
+.introtext p { margin: 0; }
+
+
+.intromedia { justify-self: end; }   
+.intromedia img {
+  width: 100%;
+  max-width: 560px;                   
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+}
+
+.serviceitem {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;   /* text gets more width than image */
+  gap: 2rem;
+  align-items: start;
+}
+
+.servicetext h2 {
+  margin-top: 0;   /* keeps headings snug */
+}
+
+.servicemedia img {
+  width: 100%;
+  max-width: 400px;   /* keeps images balanced */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  display: block;
+  margin: 0 auto;
+}
+
+
+@media (max-width: 900px) {
+  .intro {
+    grid-template-columns: 1fr;
+  }
+  .intromedia { justify-self: center; }
+  .hero { margin: 2rem auto; }
+  .serviceitem {
+    grid-template-columns: 1fr;
+  }
+  .servicemedia {
+    margin-top: 1rem;
+  }
+}
+
+.section { margin: 2.5rem 0; }
+.embed   { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
