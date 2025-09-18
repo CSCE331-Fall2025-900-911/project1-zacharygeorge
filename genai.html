@@ -4,21 +4,99 @@
   <meta charset="utf-8">
   <title>Zachary George - AI Page</title>
 </head>
+  
+<body style="font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f9f9f9;">
+  
 
-<body>
-  <header>
-    <nav class="nav">
-      <a href="index.html">Home</a> |
-      <a href="portfolio.html">Portfolio</a> |
-      <a href="qualifications.html">Qualifications</a> |
-      <a href="service.html">Service</a> |
-      <a href="genai.html">AI</a>
+  <header style="margin-bottom: 20px;">
+    <nav style="font-size: 18px;">
+      <a href="index.html" style="margin: 0 10px; text-decoration: none; color: #0077cc;">Home</a> |
+      <a href="portfolio.html" style="margin: 0 10px; text-decoration: none; color: #0077cc;">Portfolio</a> |
+      <a href="qualifications.html" style="margin: 0 10px; text-decoration: none; color: #0077cc;">Qualifications</a> |
+      <a href="service.html" style="margin: 0 10px; text-decoration: none; color: #0077cc;">Service</a> |
+      <a href="genai.html" style="margin: 0 10px; text-decoration: none; font-weight: bold; color: #ff6600;">AI</a>
     </nav>
   </header>
 
   <main>
-    <h1>AI-Generated Page</h1>
+    <h1 style="color: #333;">AI-Generated Page</h1>
+    <p style="max-width: 600px; margin: 0 auto; font-size: 16px; line-height: 1.5;">
+      This page demonstrates the capabilities of <strong>generative AI</strong>.  
+      Starting from a simple idea (“make a game”), the AI iteratively improved the prompt  
+      until the final working version was achieved. Below is the interactive game it created.
+    </p>
+
+    <!-- Game Section -->
+    <section style="margin-top: 30px;">
+      <h2 style="color: #444;">Click Counter Game</h2>
+      <p style="font-size: 16px;">Click the button as many times as you can in <strong>10 seconds!</strong></p>
+
+      <button id="startBtn" 
+        style="padding: 10px 20px; font-size: 18px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer;">
+        Start Game
+      </button>
+
+      <div id="gameArea" style="margin-top: 20px; display: none;">
+        <p style="font-size: 20px;">Score: <span id="score">0</span></p>
+        <button id="clickBtn" 
+          style="padding: 15px 30px; font-size: 20px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer;">
+          Click Me!
+        </button>
+        <p id="timer" style="font-size: 18px; margin-top: 15px;">Time Left: 10s</p>
+        <p id="gameOver" style="font-size: 22px; color: red; font-weight: bold; display: none;">Game Over!</p>
+      </div>
+    </section>
+
+    <!-- Final Prompt Box -->
+    <section style="margin-top: 40px;">
+      <h2 style="color: #444;">Final Prompt Used</h2>
+      <textarea readonly style="width: 80%; height: 100px; padding: 10px; font-size: 14px; border-radius: 6px; border: 1px solid #ccc;">
+Make the Click Counter Game where the Player clicks a button as many times as possible in 10 seconds. Track the score and show “Game Over” when time is up. Inline CSS only.
+      </textarea>
+    </section>
   </main>
+
+  <script>
+    const startBtn = document.getElementById("startBtn");
+    const gameArea = document.getElementById("gameArea");
+    const clickBtn = document.getElementById("clickBtn");
+    const scoreDisplay = document.getElementById("score");
+    const timerDisplay = document.getElementById("timer");
+    const gameOverText = document.getElementById("gameOver");
+
+    let score = 0;
+    let timeLeft = 10;
+    let timer;
+
+    startBtn.addEventListener("click", () => {
+      score = 0;
+      timeLeft = 10;
+      scoreDisplay.textContent = score;
+      timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+      gameOverText.style.display = "none";
+      gameArea.style.display = "block";
+      startBtn.style.display = "none";
+
+      timer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = `Time Left: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          clickBtn.disabled = true;
+          gameOverText.style.display = "block";
+          startBtn.style.display = "inline-block";
+          startBtn.textContent = "Play Again";
+        }
+      }, 1000);
+
+      clickBtn.disabled = false;
+    });
+
+    clickBtn.addEventListener("click", () => {
+      score++;
+      scoreDisplay.textContent = score;
+    });
+  </script>
 </body>
 </html>
 
