@@ -4,8 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Zachary George - Home</title>
-    <link id="theme" rel="stylesheet" href="style1.css">
+    <link id="style1" rel="stylesheet" href="style1.css" disabled>
+    <link id="style2" rel="stylesheet" href="style2.css" >
 </head>
+
+
 
 <body>
     <header>
@@ -16,6 +19,10 @@
             <a href="service.html">Service</a> |
             <a href="genai.html">AI</a>
         </nav>
+        <div class="design-toggle">
+            <input type="checkbox" id="styleToggle" aria-label="Switch design style">
+            <label for="styleToggle" title="Switch Designs"></label>
+        </div>
     </header>
 
 
@@ -27,7 +34,12 @@
     <main>
 
         <section class="hero">
-            <h1 class="sitename">Zachary George</h1>
+            <div class="name-tag">
+                <p class="eyebrow">Hello <span>my name is</span></p>
+                <div class="name-box">
+                <h1 class="display">ZACHARY GEORGE</h1>
+                </div>
+            </div>
             <p class="tagline">Computer Science @ Texas A&M | Mentorship & Service</p>
         </section>
 
@@ -49,6 +61,32 @@
         </section>
     </main>
 
+
+    <script>
+    (function () {
+        const link1 = document.getElementById('style1');
+        const link2 = document.getElementById('style2');
+        const toggle = document.getElementById('styleToggle');
+        const KEY = 'preferredStyle';
+
+        function apply(which) {
+        const use2 = which === 'style2';
+        link1.disabled = use2;
+        link2.disabled = !use2;
+        toggle.checked = use2;
+        localStorage.setItem(KEY, which);
+        }
+
+        // boot with saved choice
+        const saved = localStorage.getItem(KEY);
+        apply(saved === 'style2' ? 'style2' : 'style1');
+
+        // user toggle
+        toggle.addEventListener('change', () => {
+        apply(toggle.checked ? 'style2' : 'style1');
+        });
+    })();
+    </script>
 </body>
 </html>
 

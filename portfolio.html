@@ -4,8 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Zachary George - Portfolio</title>
-    <link id="theme" rel="stylesheet" href="style1.css">
+    <link id="style1" rel="stylesheet" href="style1.css" disabled>
+    <link id="style2" rel="stylesheet" href="style2.css" >
 </head>
+
+
 
 <body>
     <header>
@@ -16,38 +19,70 @@
             <a href="service.html">Service</a> |
             <a href="genai.html">AI</a>
         </nav>
+        <div class="design-toggle">
+            <input type="checkbox" id="styleToggle" aria-label="Switch design style">
+            <label for="styleToggle" title="Switch Designs"></label>
+        </div>
+
     </header>
 
     <main>
         <h1>Technical Portfolio</h1>
-        <section>
-            <h2>Neural Volume Rendering Research (Aggie Research Program)</h2>
-            <ul>
-                <li>Developed a computer-vision pipeline that transforms 2D images into detailed 3D reconstructions using Zip-NeRF and CamP.</li>
-                <li>Implemented image processing techniques-feature detection, matching, and stereo cues-to align multi-view images into a consistent 3D space.</li>
-                <li>Collected scene-level image data over time and explored object-oriented algorithms and novel view synthesis to enhance neural radiance fields.</li>
-            </ul>
-        </section>
-        <section>
-            <h2>PolitiTrack - Unbiased OSINT News Aggregator</h2>
-            <ul>
-                <li>Designed and developed a political news aggregation platform integrating AI/NLP pipelines for bias detection and sentiment analysis.</li>
-                <li>Built structured database schema and API endpoints to track legislation, voting records, and politician profiles.</li>
-                <li>Implemented web scraping and OSINT methods to collect data from legislative sources, news outlets, and public records.</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Depth Estimation Sandbox</h2>
-            <p>
-            A learning-oriented sandbox that walks from geometric camera models to using
-            pretrained depth-estimation networks. Includes a small toy model for intuition and a MiDaS-based exploration.
-            </p>
-            <ul>
-                <li>Focus: Python, NumPy, PyTorch basics, image preprocessing</li>
-            </ul>
+        <section class="projects">
+            <article class="project">
+                <h2>Neural Volume Rendering Research (Aggie Research Program)</h2>
+                <ul>
+                    <li>Developed a computer-vision pipeline that transforms 2D images into detailed 3D reconstructions using Zip-NeRF and CamP.</li>
+                    <li>Implemented image processing techniques-feature detection, matching, and stereo cues-to align multi-view images into a consistent 3D space.</li>
+                    <li>Collected scene-level image data over time and explored object-oriented algorithms and novel view synthesis to enhance neural radiance fields.</li>
+                </ul>
+            </article>
+            <article class="project">
+                <h2>PolitiTrack - Unbiased OSINT News Aggregator</h2>
+                <ul>
+                    <li>Designed and developed a political news aggregation platform integrating AI/NLP pipelines for bias detection and sentiment analysis.</li>
+                    <li>Built structured database schema and API endpoints to track legislation, voting records, and politician profiles.</li>
+                    <li>Implemented web scraping and OSINT methods to collect data from legislative sources, news outlets, and public records.</li>
+                </ul>
+            </article>
+            <article class="project">
+                <h2>Depth Estimation Sandbox</h2>
+                <p>
+                A learning-oriented sandbox that walks from geometric camera models to using
+                pretrained depth-estimation networks. Includes a small toy model for intuition and a MiDaS-based exploration.
+                </p>
+                <ul>
+                    <li>Focus: Python, NumPy, PyTorch basics, image preprocessing</li>
+                </ul>
+            </article>
         </section>
     </main>
     
+    <script>
+    (function () {
+        const link1 = document.getElementById('style1');
+        const link2 = document.getElementById('style2');
+        const toggle = document.getElementById('styleToggle');
+        const KEY = 'preferredStyle';
+
+        function apply(which) {
+        const use2 = which === 'style2';
+        link1.disabled = use2;
+        link2.disabled = !use2;
+        toggle.checked = use2;
+        localStorage.setItem(KEY, which);
+        }
+
+        // boot with saved choice
+        const saved = localStorage.getItem(KEY);
+        apply(saved === 'style2' ? 'style2' : 'style1');
+
+        // user toggle
+        toggle.addEventListener('change', () => {
+        apply(toggle.checked ? 'style2' : 'style1');
+        });
+    })();
+    </script>
 </body>
 </html>
 

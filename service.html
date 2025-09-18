@@ -4,8 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>Zachary George - Service</title>
-    <link id="theme" rel="stylesheet" href="style1.css">
+    <link id="style1" rel="stylesheet" href="style1.css" disabled>
+    <link id="style2" rel="stylesheet" href="style2.css" >
 </head>
+
 
 <body>
     <header>
@@ -16,6 +18,10 @@
             <a href="service.html">Service</a> |
             <a href="genai.html">AI</a>
         </nav>
+        <div class="design-toggle">
+            <input type="checkbox" id="styleToggle" aria-label="Switch design style">
+            <label for="styleToggle" title="Switch Designs"></label>
+        </div>
     </header>
 
     <main>
@@ -63,6 +69,31 @@
             <div class="servicemedia"><img src="website_pics/music.jpg" width="300" height="400"></div>
         </section>
     </main>
+    <script>
+    (function () {
+        const link1 = document.getElementById('style1');
+        const link2 = document.getElementById('style2');
+        const toggle = document.getElementById('styleToggle');
+        const KEY = 'preferredStyle';
+
+        function apply(which) {
+        const use2 = which === 'style2';
+        link1.disabled = use2;
+        link2.disabled = !use2;
+        toggle.checked = use2;
+        localStorage.setItem(KEY, which);
+        }
+
+        // boot with saved choice
+        const saved = localStorage.getItem(KEY);
+        apply(saved === 'style2' ? 'style2' : 'style1');
+
+        // user toggle
+        toggle.addEventListener('change', () => {
+        apply(toggle.checked ? 'style2' : 'style1');
+        });
+    })();
+    </script>
 </body>
 
 

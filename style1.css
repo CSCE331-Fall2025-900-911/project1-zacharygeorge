@@ -110,3 +110,44 @@ p { line-height: 1.65; }
 
 .section { margin: 2.5rem 0; }
 .embed   { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+
+/* Simple toggle switch */
+.design-toggle {
+  display: inline-block;
+  margin-left: 12px;
+}
+
+.design-toggle input {
+  display: none; /* hide native checkbox */
+}
+
+.design-toggle label {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.design-toggle label::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+/* Checked state: move knob right */
+.design-toggle input:checked + label {
+  background: #666;
+}
+
+.design-toggle input:checked + label::after {
+  transform: translateX(20px);
+}

@@ -4,8 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Zachary George - Qualifications</title>
-    <link id="theme" rel="stylesheet" href="style1.css">
+    <link id="style1" rel="stylesheet" href="style1.css" disabled>
+    <link id="style2" rel="stylesheet" href="style2.css" >
 </head>
+
+
 
 <body>
     <header>
@@ -16,50 +19,80 @@
             <a href="service.html">Service</a> |
             <a href="genai.html">AI</a>
         </nav>
+        <div class="design-toggle">
+            <input type="checkbox" id="styleToggle" aria-label="Switch design style">
+            <label for="styleToggle" title="Switch Designs"></label>
+        </div>
     </header>
 
     <main>
         <h1>Qualifications</h1>
         
-        <section class="section">
-            <h2>Resume</h2>
-            <div class="embed">
-                <iframe
-                    src="https://drive.google.com/file/d/1TEeok0KUDB0mxdjzewMDj7J2gf-9y6LE/preview"
-                    width="100%" height="600"
-                    title="Zachary George — Resume (PDF)">
-                </iframe>
-            </div>
-        </section>
-        <section class="section">
-            <h2>Skills & Technical Interests</h2>
-            <p>
-            I enjoy the combination of strong fundamentals and practical projects. On the fundamentals side,
-            I'm building depth with data structures and algorithms (graphs, shortest paths, dynamic programming),
-            systems topics (memory, pointers, and performance characteristics in C++), and database concepts
-            (relational modeling, normalization, and SQL query planning). I document what I learn, and I value
-            code that's readable, testable, and measured. When I don't know something, I'm comfortable starting
-            with a small experiment, writing down assumptions, and iterating based on evidence.
-            </p>
-            <p>
-            On the applied side, I'm exploring computer vision. Recent work includes a depth-estimation
-            sandbox that starts with pinhole-camera math and simple transforms, then adds a toy neural model to build
-            intuition, and finally compares outputs from a pretrained network. These experiments push me to think about
-            data quality, preprocessing, and evaluation, not just model selection. I also like to connect projects to
-            real-world needs; for instance, I'm interested in EMS or field scenarios where phone-based CV could help
-            with triage or scene awareness. That context forces trade-offs around latency, robustness, and usability.
-            </p>
-            <p>
-            Day-to-day, I work in C++ and Python. I like writing clear interfaces, using Git for disciplined version
-            control, and organizing repos so teammates can contribute quickly. I'm comfortable learning from docs and
-            official tutorials, then validating with small prototypes. I'm also committed to service and mentorship,
-            which translates to a collaborative style in technical settings—asking good questions, offering help, and
-            giving clear feedback. Over time I'd like to grow deeper in systems, database internals, and applied CV,
-            with an eye toward building reliable software that actually helps people.
-            </p>
-        </section>
+        <div class ="qual-grid">
+            <section class="section resume">
+                <h2>Resume</h2>
+                <div class="embed">
+                    <iframe
+                        src="https://drive.google.com/file/d/1TEeok0KUDB0mxdjzewMDj7J2gf-9y6LE/preview"
+                        width="100%" height="600"
+                        title="Zachary George — Resume (PDF)">
+                    </iframe>
+                </div>
+            </section>
+            <section class="section skills">
+                <h2>Skills & Technical Interests</h2>
+                <p>
+                I enjoy the combination of strong fundamentals and practical projects. On the fundamentals side,
+                I'm building depth with data structures and algorithms (graphs, shortest paths, dynamic programming),
+                systems topics (memory, pointers, and performance characteristics in C++), and database concepts
+                (relational modeling, normalization, and SQL query planning). I document what I learn, and I value
+                code that's readable, testable, and measured. When I don't know something, I'm comfortable starting
+                with a small experiment, writing down assumptions, and iterating based on evidence.
+                </p>
+                <p>
+                On the applied side, I'm exploring computer vision. Recent work includes a depth-estimation
+                sandbox that starts with pinhole-camera math and simple transforms, then adds a toy neural model to build
+                intuition, and finally compares outputs from a pretrained network. These experiments push me to think about
+                data quality, preprocessing, and evaluation, not just model selection. I also like to connect projects to
+                real-world needs; for instance, I'm interested in EMS or field scenarios where phone-based CV could help
+                with triage or scene awareness. That context forces trade-offs around latency, robustness, and usability.
+                </p>
+                <p>
+                Day-to-day, I work in C++ and Python. I like writing clear interfaces, using Git for disciplined version
+                control, and organizing repos so teammates can contribute quickly. I'm comfortable learning from docs and
+                official tutorials, then validating with small prototypes. I'm also committed to service and mentorship,
+                which translates to a collaborative style in technical settings—asking good questions, offering help, and
+                giving clear feedback. Over time I'd like to grow deeper in systems, database internals, and applied CV,
+                with an eye toward building reliable software that actually helps people.
+                </p>
+            </section>
+        </div>
     </main>
+    <script>
+    (function () {
+        const link1 = document.getElementById('style1');
+        const link2 = document.getElementById('style2');
+        const toggle = document.getElementById('styleToggle');
+        const KEY = 'preferredStyle';
 
+        function apply(which) {
+        const use2 = which === 'style2';
+        link1.disabled = use2;
+        link2.disabled = !use2;
+        toggle.checked = use2;
+        localStorage.setItem(KEY, which);
+        }
+
+        // boot with saved choice
+        const saved = localStorage.getItem(KEY);
+        apply(saved === 'style2' ? 'style2' : 'style1');
+
+        // user toggle
+        toggle.addEventListener('change', () => {
+        apply(toggle.checked ? 'style2' : 'style1');
+        });
+    })();
+    </script>
 </body>
 </html>
 

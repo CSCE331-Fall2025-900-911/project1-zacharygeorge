@@ -1,0 +1,327 @@
+/* style2.css — start with tokens only */
+:root {
+  /* palette */
+  --bg: #EFEFE2;     /* Alabaster */
+  --ink: #000000;    /* Black */
+  --brand: #FFC52F;  /* Mikado Yellow */
+  --accent: #FF612F; /* Giants Orange */
+  --mauve: #D0B4F4;  /* Mauve */
+
+  /* radii, shadows, spacing, sizing */
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --shadow-hard: 8px 8px 0 var(--ink);
+  --shadow-soft: 0 8px 0 rgba(0,0,0,.25);
+  --pad-outer: clamp(16px, 3vw, 32px);
+  --pad-card: clamp(16px, 2.4vw, 28px);
+  --maxw: 1200px;
+
+  --dur: 180ms;
+}
+
+/* global look for Design 2 */
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Fluid type + base rhythm */
+html { font-size: clamp(14px, 1.2vw + 10px, 18px); }
+body { line-height: 1.35; }
+
+/* Page container + section spacing */
+main {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--pad-outer);
+}
+section { margin: clamp(24px, 5vw, 64px) 0; }
+
+/* -------- Header & Nav (your .nav) -------- */
+header {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--pad-outer);
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(10px, 2vw, 24px);
+  font-weight: 800;
+}
+.nav a {
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+}
+.nav a:hover::after,
+.nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 6px;
+}
+
+/* -------- Headline styles (map to your tags) -------- */
+main > h1 {
+  display: inline-block;
+  background: var(--brand);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  box-shadow: var(--shadow-hard);
+  margin: 0 0 24px;
+}
+section h2 {
+  display: inline-block;
+  background: var(--brand);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  box-shadow: var(--shadow-hard);
+  margin: 0 0 18px;
+}
+
+/* -------- Hero (your .hero, .sitename, .tagline) -------- */
+
+/* Hero container */
+.hero { text-align: center; margin: clamp(24px, 5vw, 64px) 0; }
+
+/* Outer yellow name tag */
+.name-tag {
+  display: inline-block;
+  background: var(--brand);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hard);
+  padding: clamp(16px, 3vw, 28px);
+  text-align: center;
+}
+
+/* Eyebrow text */
+.eyebrow { 
+  font-size: clamp(18px, 2.4vw, 28px); 
+  margin: 0 0 12px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+.eyebrow span { 
+  display: block; 
+  font-size: .7em; 
+  opacity: .9; 
+}
+
+/* Inner mauve box for the name */
+.name-box {
+  background: var(--bg);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(12px, 2vw, 24px) clamp(16px, 3vw, 32px);
+}
+
+/* Big name text */
+.display {
+  font-size: clamp(40px, 10vw, 120px);
+  line-height: 0.9;
+  margin: 0;
+  font-weight: 900;
+}
+
+/* Tagline under the tag */
+.tagline { 
+  max-width: 900px; 
+  margin: 20px auto 0; 
+  font-weight: 800; 
+}
+
+.sitename {
+  font-size: clamp(40px, 10vw, 120px);
+  line-height: 0.9;
+  margin: clamp(12px, 2vw, 16px) 0 4px;
+  letter-spacing: .5px;
+}
+
+
+/* -------- Intro split (your .intro, .introtext, .intromedia) -------- */
+/* INDEX — image left, text right */
+.intro {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr; /* image a bit narrower or tweak to taste */
+  gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+}
+.intromedia { order: -1; } /* put image first (left) */
+
+.introtext {
+  background: var(--mauve);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-lg);
+  padding: var(--pad-card);
+  box-shadow: var(--shadow-hard);
+}
+.intromedia img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 4px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: var(--shadow-hard);
+}
+
+/* -------- Service page (your .serviceitem blocks) -------- */
+.serviceitem {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr; /* text a touch wider than image */
+  gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+}
+
+/* row 1: image LEFT, text RIGHT (default) */
+.serviceitem .servicemedia { order: 1; }
+.serviceitem .servicetext { order: 2; }
+
+/* row 2 (even): image RIGHT, text LEFT */
+.serviceitem:nth-of-type(even) {
+  grid-template-columns: .9fr 1.1fr;
+}
+.serviceitem:nth-of-type(even) .servicemedia { order: 2; }
+.serviceitem:nth-of-type(even) .servicetext { order: 1; }
+
+/* responsive: always stack image above text */
+@media (max-width: 800px) {
+  .serviceitem { grid-template-columns: 1fr; }
+  .serviceitem .servicemedia { order: -1; } /* image first on mobile */
+}
+.servicetext {
+  background: var(--brand);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-lg);
+  padding: var(--pad-card);
+  box-shadow: var(--shadow-hard);
+}
+.servicemedia img {
+  width: 100%;
+  height: auto;
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hard);
+}
+
+/* -------- Qualifications (your .section + .embed) -------- */
+.section { margin: clamp(24px, 5vw, 64px) 0; }
+.embed {
+  background: #fff;
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hard);
+  overflow: hidden;
+}
+.embed iframe { display:block; width:100%; height:60vh; }
+
+/* -------- Lists inside content -------- */
+section ul { padding-left: 1.2em; }
+section li { margin: .35em 0; }
+
+/* -------- Optional: small-screen tweaks -------- */
+@media (max-width: 800px) {
+  .intro, .serviceitem { grid-template-columns: 1fr; }
+  .servicemedia { order: -1; } /* image above text on mobile */
+}
+
+/* PORTFOLIO — 3-up grid */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 3vw, 28px);
+  align-items: start;
+}
+
+/* tile styling reusing your Design 2 card vibe */
+.project {
+  background: var(--brand);
+  border: 4px solid var(--ink);
+  border-radius: var(--radius-md);
+  padding: var(--pad-card);
+  box-shadow: var(--shadow-hard);
+}
+.project h2 {
+  display: block;               /* let it span full width inside card */
+  background: transparent;      /* remove “label pill” look inside the card */
+  border: 0;
+  box-shadow: none;
+  margin: 0 0 10px;
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+/* responsive: stack on small screens */
+@media (max-width: 900px) {
+  .projects { grid-template-columns: 1fr; }
+}
+
+/* QUALIFICATIONS — 2-col, resume on LEFT */
+.qual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: start;
+}
+
+/* force resume first, skills second */
+.qual-grid .resume { order: 1; }
+.qual-grid .skills { order: 2; }
+
+/* make the resume panel breathe */
+.resume .embed iframe { height: 70vh; }
+
+/* responsive: stack on mobile */
+@media (max-width: 900px) {
+  .qual-grid { grid-template-columns: 1fr; }
+  .qual-grid .skills, .qual-grid .resume { order: initial; }
+}
+
+/* Simple toggle switch */
+.design-toggle {
+  display: inline-block;
+  margin-left: 12px;
+}
+
+.design-toggle input {
+  display: none; /* hide native checkbox */
+}
+
+.design-toggle label {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.design-toggle label::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+/* Checked state: move knob right */
+.design-toggle input:checked + label {
+  background: #666;
+}
+
+.design-toggle input:checked + label::after {
+  transform: translateX(20px);
+}
