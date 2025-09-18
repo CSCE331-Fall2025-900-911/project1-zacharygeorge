@@ -92,6 +92,17 @@ section h2 {
 /* Hero container */
 .hero { text-align: center; margin: clamp(24px, 5vw, 64px) 0; }
 
+/* Only Style 2 gets the eyebrow — name-tag version */
+.name-tag::before {
+  content: "Hello\A My name is";
+  white-space: pre; /* allow the line break */
+  display: block;
+  text-align: center;
+  font-size: clamp(18px, 2.4vw, 28px);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
 /* Outer yellow name tag */
 .name-tag {
   display: inline-block;
@@ -118,7 +129,7 @@ section h2 {
 
 /* Inner mauve box for the name */
 .name-box {
-  background: var(--bg);
+  background: var(--bg);      /* was var(--bg) */
   border: 3px solid var(--ink);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
